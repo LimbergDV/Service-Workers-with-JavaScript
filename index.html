@@ -1,16 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de tareas</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="img/icon.png" />
-</head>
-<body>
-    <h1 class="mb-7 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-dark text-center">Lista de tareas</h1>
-    
-      <script src="https://cdn.tailwindcss.com"></script>
-      <script src="src/serviceworker.js"></script>
-</body>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lista de Tareas</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="./img/icon.png" type="image/x-icon">
+  </head>
+  <body>
+    <h1>📝 Lista de Tareas</h1>
+
+    <input id="taskInput" type="text" placeholder="Escribe una tarea" />
+    <button id="addTaskBtn">Agregar</button>
+    <ul id="taskList"></ul>
+
+    <script src="script.js"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("./serviceworker.js")
+          .then((reg) => console.log("✅ Service Worker registrado:", reg))
+          .catch((err) => console.error("❌ Error al registrar el SW:", err));
+      }
+    </script>
+  </body>
 </html>
