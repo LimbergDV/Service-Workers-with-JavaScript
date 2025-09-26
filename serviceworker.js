@@ -1,10 +1,11 @@
 const CACHE_NAME = "mi-app-cache-v2";
 const urlsToCache = [
-  "./serviceworker.js",          
   "./index.html",
   "./style.css",
   "./script.js",
-  "./img/"
+  "./img/tarea1.png",
+  "./img/tarea2.png",
+  "./img/icon.png"
 ];
 
 // Instalar SW y cachear archivos
@@ -34,8 +35,18 @@ self.addEventListener("activate", event => {
 // Interceptar peticiones
 self.addEventListener("fetch", event => {
   event.respondWith(
-    caches.match(event.request).then(response => {
-      return response || fetch(event.request);
+    caches.match(event.request).then(cachedResponse => {
+      if (cachedResponse) {
+        return cachedResponse; // Devuelve cache si existe
+      }
+      return fetch(event.request)
+        .catch(() => {
+          // Fallback si no hay conexión y no está en cache
+          if (event.request.destination === 'document') {
+            return caches.match('./index.html'); // carga index.html offline
+          }
+          return new Response('Offline', { status: 503, statusText: 'Offline' });
+        });
     })
   );
 });
