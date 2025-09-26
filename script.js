@@ -4,6 +4,13 @@ const taskList = document.getElementById("taskList");
 
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker
+    .register("./serviceworker.js")
+    .then((reg) => console.log("Service Worker registrado:", reg))
+    .catch((err) => console.error("Error al registrar el SW:", err));
+}
+
 function renderTasks() {
   taskList.innerHTML = "";
 

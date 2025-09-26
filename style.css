@@ -2,21 +2,57 @@ body {
   font-family: Arial, sans-serif;
   text-align: center;
   margin: 20px;
+  padding: 0 20px;
 }
 
-input {
-  padding: 10px;
-  width: 200px;
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 500px;
+  margin: 0 auto;
+  width: 100%;
 }
 
-button {
+textarea {
   padding: 10px;
-  margin-left: 5px;
+  width: 100%;
+  max-width: 200vh;
+  height: 120px;
+  resize: none;
+  display: block;
+  box-sizing: border-box;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-family: inherit;
+}
+
+#addTaskBtn {
+  padding: 12px;
+  width: 100%;
+  max-width: 200vh;
+  display: block;
+  margin-top: 8px;
+  box-sizing: border-box;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+#addTaskBtn:hover {
+  background-color: #0056b3;
 }
 
 ul {
   list-style: none;
   padding: 0;
+  max-width: 200vh;
+  margin: 20px auto;
+  width: 100%;
 }
 
 li {
@@ -28,17 +64,35 @@ li {
 
 .task-item {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   background: #fafafa;
   margin-bottom: 10px;
-  padding: 10px;
+  padding: 12px;
   border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  min-height: 40px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.task-item span {
+  flex: 1;
+  text-align: left;
+  margin-right: 10px;
+  font-size: 16px;
+  word-wrap: break-word;
+  word-break: break-all;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  min-width: 0;
+  max-width: calc(100% - 80px); /* Reserva espacio para los botones */
 }
 
 .task-buttons {
   display: flex;
-  gap: 6px;
+  gap: 8px;
+  flex-shrink: 0;
 }
 
 .task-buttons button {
@@ -46,4 +100,66 @@ li {
   background: none;
   cursor: pointer;
   font-size: 18px;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.task-buttons button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  body {
+    margin: 10px;
+    padding: 0 10px;
+  }
+
+  textarea {
+    height: 100px;
+    font-size: 16px;
+  }
+
+  #addTaskBtn {
+    padding: 14px;
+    font-size: 16px;
+  }
+
+  .task-item {
+    padding: 10px;
+  }
+
+  .task-item span {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .input-container {
+    padding: 0 10px;
+  }
+
+  textarea {
+    min-width: 200px;
+  }
+
+  #addTaskBtn {
+    min-width: 200px;
+  }
+
+  .task-item {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  .task-item span {
+    text-align: center;
+    margin-right: 0;
+  }
+
+  .task-buttons {
+    justify-content: center;
+  }
 }

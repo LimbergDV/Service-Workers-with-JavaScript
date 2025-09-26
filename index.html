@@ -10,18 +10,13 @@
   <body>
     <h1>📝 Lista de Tareas</h1>
 
-    <input id="taskInput" type="text" placeholder="Escribe una tarea" />
+    <div class="imput-container">
+    <textarea id="taskInput" type="text" placeholder="Escribe una tarea"></textarea>
     <button id="addTaskBtn">Agregar</button>
+    </div>
+
     <ul id="taskList"></ul>
 
     <script src="script.js"></script>
-    <script>
-      if ("serviceWorker" in navigator) {
-        navigator.serviceWorker
-          .register("./serviceworker.js")
-          .then((reg) => console.log("✅ Service Worker registrado:", reg))
-          .catch((err) => console.error("❌ Error al registrar el SW:", err));
-      }
-    </script>
   </body>
 </html>
